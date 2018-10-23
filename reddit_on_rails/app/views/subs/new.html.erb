@@ -17,7 +17,7 @@
 
 <br><br>
 
-<% placeholding = (@sub.description.nil? ? "Enter description here..." : "")%>
+<% placeholding = (@sub.description.nil? || @sub.description == "" ? "Enter description here..." : "")%>
 
 <% if flash.now[:errors] %>
   <ul>

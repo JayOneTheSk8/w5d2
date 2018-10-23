@@ -17,7 +17,6 @@ class SubsController < ApplicationController
       redirect_to sub_url(@sub)
     else
       flash.now[:errors] = @sub.errors.full_messages
-      @sub = Sub.new(title: params[:sub][:title], description: params[:sub][:description])
       render :new
     end
   end
@@ -42,7 +41,6 @@ class SubsController < ApplicationController
       redirect_to sub_url(@sub)
     else
       flash.now[:errors] = @sub.errors.full_messages
-      @sub = Sub.new(title: params[:sub][:title], description: params[:sub][:description])
       render :edit
     end
   end
