@@ -39,3 +39,15 @@
   <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
   <input type="submit" value="Delete Sub">
 </form>
+
+<br><br>
+
+<a href="<%= new_sub_post_url(@sub) %>">Make a New Post!</a>
+
+<ul>
+  <% @sub.posts.each do |post| %>
+    <li>
+      <a href="<%= posts_url(post.id) %>"><%= post.title %></a>
+    </li>
+  <% end %>
+</ul>

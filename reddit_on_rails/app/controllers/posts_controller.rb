@@ -3,6 +3,7 @@ class PostsController < ApplicationController
   before_action :ensure_author, only: [:edit, :update, :destroy]
 
   def new
+    @sub = Sub.find(params[:sub_id])
     render :new
   end
 
@@ -56,6 +57,6 @@ class PostsController < ApplicationController
   end
 
   def post_params
-    params.require(:post).permit(:title, :url, :content)
+    params.require(:post).permit(:title, :url, :content, :sub_id)
   end
 end
