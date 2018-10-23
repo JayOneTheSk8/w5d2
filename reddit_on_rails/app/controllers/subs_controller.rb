@@ -37,7 +37,20 @@ class SubsController < ApplicationController
   end
 
   def update
+    @sub = Sub.find(params[:id])
+    if @sub.update(sub_params)
+      redirect_to sub_url(@sub)
+    else
+      flash.now[:errors] = @sub.errors.full_messages
+      @sub = Sub.new(title: params[:sub][:title], description: params[:sub][:description])
+      render :edit
+    end
+  end
 
+  def destroy
+    subreddit = Sub.find(params[:id])
+    subreddit.destroy
+    redirect_to subs_url
   end
 
   private

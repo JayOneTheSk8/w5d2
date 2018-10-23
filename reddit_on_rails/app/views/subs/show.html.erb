@@ -21,7 +21,21 @@
   <%= @sub.description %>
 </p>
 
+<% if flash[:errors] %>
+  <ul>
+    <% flash[:errors].each do |error| %>
+      <li><%= error %></li>
+    <% end %>
+  </ul>
+<% end %>
+
 <form action="<%= edit_sub_url(@sub.id) %>" method="get">
   <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
   <input type="submit" value="Edit Sub">
+</form>
+
+<form action="<%= sub_url(@sub.id) %>" method="post">
+  <input type="hidden" name="_method" value="delete">
+  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+  <input type="submit" value="Delete Sub">
 </form>
