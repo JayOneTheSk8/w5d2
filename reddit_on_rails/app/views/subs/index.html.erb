@@ -1,0 +1,32 @@
+<% unless current_user %>
+  <a href="<%= new_session_url %>">Sign In!</a>
+<% else %>
+  <ul>
+    <li><%= current_user.username %></li>
+    <li>
+      <a href="<%= new_sub_url %>">Create a sub!</a>
+    </li>
+    <li>
+      <a href="<%= subs_url %>">All Subs</a>
+    </li>
+    <li>
+      <form action="<%= session_url %>" method="post">
+        <input type="hidden" name="_method" value="delete">
+        <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+        <input type="submit" value="Log Out">
+      </form>
+    </li>
+  </ul>
+<% end %>
+
+<h1>All the Subs!</h1>
+
+<ul>
+<% Sub.all.each do |subreddit| %>
+  <li>
+    <a href="<%= sub_url(subreddit.id) %>">
+      <%= subreddit.title %>
+    </a>
+  </li>
+<% end %>
+</ul>

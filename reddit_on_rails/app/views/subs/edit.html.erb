@@ -1,0 +1,46 @@
+<ul>
+  <li><%= current_user.username %></li>
+  <li>
+    <a href="<%= new_sub_url %>">Create a sub!</a>
+  </li>
+  <li>
+    <a href="<%= subs_url %>">All Subs</a>
+  </li>
+  <li>
+    <form action="<%= session_url %>" method="post">
+      <input type="hidden" name="_method" value="delete">
+      <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+      <input type="submit" value="Log Out">
+    </form>
+  </li>
+</ul>
+
+<br><br>
+
+<% if flash.now[:errors] %>
+  <ul>
+    <% flash.now[:errors].each do |error| %>
+      <li><%= error %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+<h1>Edit your sub!</h1>
+
+<br>
+
+<form action="<%= subs_url %>" method="post">
+  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+
+  <label for="name">Name</label>
+  <input id="name" type="text" name="sub[title]" value="<%= @sub.title %>">
+
+  <br>
+
+  <label for="description">Description</label>
+  <textarea id="description" name="sub[description]" ><%= @sub.description %></textarea>
+
+  <br>
+
+  <input type="submit" value="Edit!">
+</form>

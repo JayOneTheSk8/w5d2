@@ -1,0 +1,27 @@
+<ul>
+  <li><%= current_user.username %></li>
+  <li>
+    <a href="<%= new_sub_url %>">Create a sub!</a>
+  </li>
+  <li>
+    <a href="<%= subs_url %>">All Subs</a>
+  </li>
+  <li>
+    <form action="<%= session_url %>" method="post">
+      <input type="hidden" name="_method" value="delete">
+      <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+      <input type="submit" value="Log Out">
+    </form>
+  </li>
+</ul>
+
+<h1><%= @sub.title %></h1>
+
+<p>
+  <%= @sub.description %>
+</p>
+
+<form action="<%= edit_sub_url(@sub.id) %>" method="get">
+  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+  <input type="submit" value="Edit Sub">
+</form>

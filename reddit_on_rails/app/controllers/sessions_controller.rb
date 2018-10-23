@@ -1,6 +1,7 @@
 class SessionsController < ApplicationController
 
   def new
+    @user = User.new
     render :new
   end
 
@@ -11,9 +12,10 @@ class SessionsController < ApplicationController
     )
     if @user
       log_in!(@user)
-      redirect_to user_url(@user)
+      redirect_to subs_url
     else
       flash.now[:errors] = ['Invalid username or password']
+      @user = User.new(username: params[:user][:username])
       render :new
     end
   end
